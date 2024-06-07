@@ -1,0 +1,14 @@
+from django import forms
+from .models import GetInTouch
+
+
+class GetInTouchForm(forms.ModelForm):
+    class Meta:
+        model = GetInTouch
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(GetInTouchForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field_name.capitalize()
